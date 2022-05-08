@@ -1,0 +1,19 @@
+{
+  "name": "jwt-app",
+  "version": "1.0.0",
+  "description": "jwt app (nodejs)",
+  "main": "server.js",
+  "scripts": {
+    "test": "nodemon server.js",
+    "start": "node server.js"
+  },
+  "author": "mayank kushwaha",
+  "license": "ISC",
+  "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "date-and-time": "^2.3.1",
+    "express": "^4.18.1",
+    "jsonwebtoken": "^8.5.1",
+    "nodemon": "^2.0.16"
+  }
+}

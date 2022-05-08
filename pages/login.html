@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      .main {
+        background-color: #242424;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100vh;
+      }
+      .main2 {
+        background-color: aquamarine;
+        height: 50vh;
+        width: 50%;
+      }
+      .main3 {
+        display: flex;
+        flex-direction: column;
+      }
+
+      input,
+      button {
+        text-align: center;
+        padding: 10px;
+        margin: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main2">
+        <div class="main3">
+          <input
+            type="text"
+            name="username"
+            id="username"
+            placeholder="username"
+            value="abc"
+          />
+          <input
+            type="password"
+            name="password"
+            id="password"
+            placeholder="password"
+            value="123"
+          />
+          <button onclick="send()">Sign In</button>
+        </div>
+      </div>
+    </div>
+    <script>
+      const urlparam =new URLSearchParams(location.search);
+      for (const value of urlparam.values()){
+        var directo = value 
+      }
+      console.log(directo)
+      function send() {
+        let username = document.getElementById("username");
+        let password = document.getElementById("password");
+        let xhr = new XMLHttpRequest();
+        let url = "login";
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === 4 && xhr.status === 200) {
+            let result = JSON.parse(this.response);
+            if(result.user==true){
+            location.replace(result.url);
+          }else{
+              console.log("user not found")
+            }
+          }
+        };
+        var data = JSON.stringify({
+          username: username.value,
+          password: password.value,
+          directo: directo || "/"
+        });
+        xhr.send(data);
+      }
+    </script>
+  </body>
+</html>
