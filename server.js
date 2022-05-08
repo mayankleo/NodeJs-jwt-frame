@@ -18,11 +18,10 @@ app.get("/", (req, res) => {
 });
 
 app.get("/login", (req, res) => {
-  res.sendFile(__dirname + "/pages/login.html");
+    res.sendFile(__dirname + "/pages/login.html");
 });
 
 app.post("/login", (req, res) => {
-  console.log(req.body);
   if (req.body.username == admin.username && req.body.password == admin.passwd) {
     usertoken = {username: req.body.username, useragent: req.headers["user-agent"],};
     token = jwt.sign(usertoken, key, { expiresIn: "30d" });
@@ -38,9 +37,8 @@ app.get("/logout", authenticator, (req, res) => {
 });
 
 function authenticator(req, res, next) {
-  var header = req.cookies.access_token;
   try {
-    data = jwt.verify(header, key);
+    data = jwt.verify(req.cookies.access_token, key);
     //   data.iat=date.format(new Date(data.iat*1000), 'DD/MM/YYYY hh:mm A')
     //   data.exp=date.format(new Date(data.exp*1000), 'DD/MM/YYYY hh:mm A')
     //   console.log(data);
