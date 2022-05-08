@@ -10,53 +10,56 @@
         margin: 0;
         padding: 0;
       }
-      .main {
-        background-color: #242424;
+      .main{
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 100%;
         height: 100vh;
-      }
-      .main2 {
-        background-color: aquamarine;
-        height: 50vh;
-        width: 50%;
-      }
-      .main3 {
-        display: flex;
+        width: 100%;
         flex-direction: column;
+        gap: 5% 0;
+        background-color: #242424;
+        color: #fff;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
       }
-
-      input,
-      button {
-        text-align: center;
+      input, button{
+        padding: 15px 20px;
+        border-radius: 100px;
+        border-color: rgb(251, 255, 0);
+        width: 40%;
+        background-color: #363636;
+        transition: 0.4s;
+        color: #fff;
+        outline: none;
+      }
+      button{
+        width: 30%;
+      }
+      input:hover, input:focus{
+        width: 41%;
+        border-color: rgb(51, 255, 0);
+        color: rgb(51, 255, 0);
+      }
+      button:hover, button:focus{
+        width: 31%;
+        border-color: rgb(51, 255, 0);
+        color: rgb(51, 255, 0);
+      }
+      a{
+        color: rgb(51, 255, 0);
         padding: 10px;
-        margin: 20px;
+        font-size: 15px;
       }
+      
     </style>
   </head>
   <body>
     <div class="main">
-      <div class="main2">
-        <div class="main3">
-          <input
-            type="text"
-            name="username"
-            id="username"
-            placeholder="username"
-            value="abc"
-          />
-          <input
-            type="password"
-            name="password"
-            id="password"
-            placeholder="password"
-            value="123"
-          />
-          <button onclick="send()">Sign In</button>
-        </div>
-      </div>
+      <h2>Login to your account</h2>
+      <input type="text" id="username" title="username" placeholder="username" />
+      <input type="password" id="password" title="username" placeholder="password" />
+      <button type="submit" onclick="send()" class="btn">Sign In</button>
+      <a class="forgot" href="#">Sign up</a>
     </div>
     <script>
       const urlparam =new URLSearchParams(location.search);

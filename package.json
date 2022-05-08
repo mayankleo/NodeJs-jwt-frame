@@ -1,7 +1,7 @@
 {
   "name": "jwt-app",
   "version": "1.0.0",
-  "description": "jwt app (nodejs)",
+  "description": "Nodejs jwt frame",
   "main": "server.js",
   "scripts": {
     "test": "nodemon server.js",
