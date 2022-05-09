@@ -10,10 +10,11 @@
         margin: 0;
         padding: 0;
         text-transform: capitalize;
-        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+          sans-serif;
         color: white;
       }
-      .main{
+      .main {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -23,7 +24,8 @@
         gap: 5% 0;
         background-color: #242424;
       }
-      input, button{
+      input,
+      button {
         padding: 15px 20px;
         border-radius: 100px;
         border-style: hidden;
@@ -34,24 +36,26 @@
         color: #fff;
         outline: none;
       }
-      button{
+      button {
         width: 30%;
       }
-      input:hover, input:focus{
+      input:hover,
+      input:focus {
         width: 41%;
         color: rgb(51, 255, 0);
       }
-      button:hover, button:focus{
+      button:hover,
+      button:focus {
         width: 31%;
         color: rgb(51, 255, 0);
       }
-      a:link{
+      a:link {
         color: rgb(217, 255, 0);
         padding: 10px;
         font-size: 15px;
         text-decoration: none;
       }
-      a:hover{
+      a:hover {
         text-decoration: underline;
         color: rgb(51, 255, 0);
       }
@@ -77,15 +81,27 @@
     <div class="slider" id="slider">error message show here</div>
     <div class="main">
       <h2>Login to your account</h2>
-      <input type="text" id="username" title="username" placeholder="username" value="abc"/>
-      <input type="password" id="password" title="username" placeholder="password" value="123"/>
+      <input
+        type="text"
+        id="username"
+        title="username"
+        placeholder="username"
+        value="abc"
+      />
+      <input
+        type="password"
+        id="password"
+        title="username"
+        placeholder="password"
+        value="123"
+      />
       <button type="submit" onclick="send()" class="btn">Sign In</button>
-      <a class="forgot" href="#">Sign up</a>
+      <a class="forgot" href="/register">Sign up</a>
     </div>
     <script>
       var x;
-      const urlparam =new URLSearchParams(location.search);
-      for (const value of urlparam.values()){
+      const urlparam = new URLSearchParams(location.search);
+      for (const value of urlparam.values()) {
         var directo = value;
       }
       function send() {
@@ -93,29 +109,28 @@
         let username = document.getElementById("username");
         let password = document.getElementById("password");
         let xhr = new XMLHttpRequest();
-        let url = "login";
-        xhr.open("POST", url, true);
+        xhr.open("POST", "login", true);
         xhr.setRequestHeader("Content-Type", "application/json");
         xhr.onreadystatechange = function () {
           if (xhr.readyState === 4 && xhr.status === 200) {
             let result = JSON.parse(this.response);
-            if(result.user==true){
+            if (result.user == true) {
               location.replace(result.url);
-            }else{
-              document.getElementById("slider").innerText = "invalid username or password";
+            } else {
+              document.getElementById("slider").innerText ="invalid username or password";
               clearTimeout(x);
-        document.getElementById("slider").classList.add("show");
-        x = setInterval(() => {
-          document.getElementById("slider").classList.remove("show");
-          clearTimeout(x);
-        }, 5000);
+              document.getElementById("slider").classList.add("show");
+              x = setInterval(() => {
+                document.getElementById("slider").classList.remove("show");
+                clearTimeout(x);
+              }, 5000);
             }
           }
         };
         var data = JSON.stringify({
           username: username.value,
           password: password.value,
-          directo: directo || "/"
+          directo: directo || "/",
         });
         xhr.send(data);
       }
