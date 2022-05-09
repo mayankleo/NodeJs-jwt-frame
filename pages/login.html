@@ -26,9 +26,10 @@
       input, button{
         padding: 15px 20px;
         border-radius: 100px;
-        border-color: rgb(251, 255, 0);
+        border-style: hidden;
         width: 40%;
         background-color: #363636;
+        font-size: large;
         transition: 0.4s;
         color: #fff;
         outline: none;
@@ -38,34 +39,42 @@
       }
       input:hover, input:focus{
         width: 41%;
-        border-color: rgb(51, 255, 0);
         color: rgb(51, 255, 0);
       }
       button:hover, button:focus{
         width: 31%;
-        border-color: rgb(51, 255, 0);
         color: rgb(51, 255, 0);
       }
-      a{
+      a:link{
         color: rgb(217, 255, 0);
         padding: 10px;
         font-size: 15px;
+        text-decoration: none;
       }
-      .message{
+      a:hover{
+        text-decoration: underline;
+        color: rgb(51, 255, 0);
+      }
+      .slider {
         position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         z-index: 1;
-        text-align: center;
-        width: 100%;
-        background-color: rgb(172, 0, 0);
+        background-color: rgb(129, 0, 0);
         font-weight: 500;
-        font-size: larger;
-        height: auto;
+        width: 100%;
+        height: 2rem;
+        top: -100%;
+        transition: top 0.5s ease 0s;
+      }
+      .show {
+        top: 0;
       }
     </style>
   </head>
   <body>
-    <div class="message" id="message">
-    </div>
+    <div class="slider" id="slider">error message show here</div>
     <div class="main">
       <h2>Login to your account</h2>
       <input type="text" id="username" title="username" placeholder="username" value="abc"/>
@@ -93,8 +102,13 @@
             if(result.user==true){
               location.replace(result.url);
             }else{
-              document.getElementById("message").innerText = "invalid username or password";
-              x = setInterval(function() {document.getElementById("message").innerText = "";clearInterval(x);},10000);
+              document.getElementById("slider").innerText = "invalid username or password";
+              clearTimeout(x);
+        document.getElementById("slider").classList.add("show");
+        x = setInterval(() => {
+          document.getElementById("slider").classList.remove("show");
+          clearTimeout(x);
+        }, 5000);
             }
           }
         };
